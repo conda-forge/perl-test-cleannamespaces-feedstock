@@ -4,15 +4,15 @@
 
 package:
   name: {{ name }}
-  version: {{ version }}
+  version: "{{ version }}"
 
 source:
   url: https://cpan.metacpan.org/authors/id/E/ET/ETHER/Test-CleanNamespaces-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
-  skip: true   # [win]
-  number: 2
+  noarch: generic
+  number: 3
   run_exports:
     weak:
       - {{ name }} ={{ version }}
@@ -39,6 +39,8 @@ requirements:
   run:
     - perl
     - perl-sub-identify
+    - perl-package-stash
+    - perl-module-runtime
 
 test:
   imports:
@@ -47,9 +49,7 @@ test:
 about:
   home: https://github.com/karenetheridge/Test-CleanNamespaces
   license: GPL-1.0-or-later OR Artistic-1.0-Perl
-  license_file:
-    - {{ environ["PREFIX"] }}/man/man1/perlartistic.1
-    - {{ environ["PREFIX"] }}/man/man1/perlgpl.1
+  license_file: LICENCE
   summary: 'Check for uncleaned imports'
 
 extra:
